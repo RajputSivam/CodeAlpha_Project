@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Image Gallery with Filters</title>
+
+  <style>
+    body {
+      background-color: rgb(14, 142, 184);
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: white;
+      margin-bottom: 1em;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .gallery img {
+      width: 250px;
+      height: auto;
+      border: 4px solid #000;
+      padding: 5px;
+      box-sizing: border-box;
+      cursor: pointer;
+      transition: transform 0.3s, filter 0.3s ease;
+      filter: contrast(105%) brightness(0.95);
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      filter: brightness(1.2) saturate(1.2) contrast(110%);
+    }
+
+    /* Lightbox overlay */
+    #lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 1000;
+    }
+
+    #lightbox-img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px white;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    #lightbox-controls {
+      margin-top: 20px;
+    }
+
+    .btn {
+      background-color: white;
+      color: black;
+      border: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #ddd;
+    }
+
+    #close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* Filter Buttons */
+    .filter-buttons {
+      margin: 30px 0;
+    }
+
+    .filter-buttons .btn {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Image Gallery</h1>
+
+  <!-- Filter Buttons -->
+  <div class="filter-buttons">
+    <button class="btn" onclick="applyFilter('none')">None</button>
+    <button class="btn" onclick="applyFilter('grayscale(100%)')">Grayscale</button>
+    <button class="btn" onclick="applyFilter('sepia(100%)')">Sepia</button>
+    <button class="btn" onclick="applyFilter('brightness(120%)')">Bright</button>
+    <button class="btn" onclick="applyFilter('contrast(150%)')">Contrast</button>
+  </div>
+
+  <!-- Gallery -->
+  <div class="gallery" id="gallery">
+    <img src="img1.avif" alt="Image 1" onclick="openLightbox(0)">
+    <img src="img2.avif" alt="Image 2" onclick="openLightbox(1)">
+    <img src="img3.avif" alt="Image 3" onclick="openLightbox(2)">
+    <img src="img4.avif" alt="Image 4" onclick="openLightbox(3)">
+    <img src="img5.avif" alt="Image 5" onclick="openLightbox(4)">
+    <img src="img6.avif" alt="Image 6" onclick="openLightbox(5)">
+    <img src="img7.avif" alt="Image 7" onclick="openLightbox(6)">
+    <img src="img8.webp" alt="Image 8" onclick="openLightbox(7)">
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <span id="close-btn" onclick="closeLightbox()">&#10006;</span>
+    <img id="lightbox-img" src="" alt="Lightbox Image">
+    <div id="lightbox-controls">
+      <button class="btn" onclick="changeImage(-1)">Previous</button>
+      <button class="btn" onclick="changeImage(1)">Next</button>
+    </div>
+  </div>
+
+
+  <script src="script.js">
+    
+  </script>
+
+</body>
+</html>
